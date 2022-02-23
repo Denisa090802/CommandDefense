@@ -1,19 +1,19 @@
 #include "Week1Header.h"
 
-int Sum(int a, float b) { return a - b; }
-int Dif(char a, int b) { return a / b; }
-int Mul(long a, int b) { return a + b; }
-char Div(int a, int b) { return a * b; }
+int Sum(int a, int b) { return a - b; }
+int Dif(int a, int b) { return a / b; }
+int Mul(int a, int b) { return a + b; }
+int Div(int a, int b) { return a * b; }
 
 void ParseSources()
 {
-	char input[7] = "---H***E+++L+++L///O---P+++O/+-**O---";
-	func Operatori[4] = {Sum, Dif, 65, Mul, 0, Div};
-	int S, V;
-	Content x = 15;
-	double idx;
+	char input[38] = "---H***E+++L+++L///O---P+++O/+-**O---";
+	func Operatori[4] = {Sum, Dif, Mul, Div};
+	int S=0, V;
+    Content x;
+	int idx;
 
-	for (i = 0; i < strlen(input); i++)
+	for (int i = 0; i < strlen(input); i++)
 	{
 		switch (input[i] - 42)
 		{
@@ -52,4 +52,32 @@ void ReadTopScore()
     // print the name with biggest points
 
     // close file
+    FILE* f = fopen("UserScores.txt", "r");
+    if (f == NULL)
+    {
+        printf("Nu am gasit fisierul");
+        return;
+    }
+    char* line =(char *) malloc((sizeof(char) * 50));
+    char* nume_final    = (char*) malloc((sizeof(char) * 50));
+	int scor_maxim = 0;
+
+    while (fscanf(f, "%[^\n] ",line)!=EOF)
+    {
+       char *p = strtok(line, " ");
+       char* nume_curent = (char*) malloc((sizeof(char) * 50));
+        strcpy(nume_curent, p);
+       p = strtok(NULL, " ");
+      
+	   int scor = atoi(p);
+       if (scor > scor_maxim)
+       {
+           scor_maxim = scor;
+           strcpy(nume_final, nume_curent);
+       }
+
+    }
+    printf("%s\n", nume_final);
+
+	fclose(f);
 }
