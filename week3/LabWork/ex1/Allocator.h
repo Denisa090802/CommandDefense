@@ -1,3 +1,11 @@
+//
+
+//
+
+#ifndef Allocator_hpp
+#define Allocator_hpp
+
+#include <stdio.h>
 #pragma once
 class Allocator
 {
@@ -17,4 +25,7 @@ class Allocator
     double* alloc(double x);
     char* alloc(char x);
     char* alloc(const char* string);
+    char* alloc(const char* string1, const char* string2);
 };
+
+#endif /* Allocator_hpp */

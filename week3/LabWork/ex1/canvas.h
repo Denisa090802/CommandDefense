@@ -1,17 +1,24 @@
+//
+//
+
+#ifndef canvas_hpp
+#define canvas_hpp
+
+#include <stdio.h>
 class Canvas {
     int lines, columns;
     char** m;
-  public:
-    // contructor will call the clear method
-    Canvas(int lines, int columns);
+public:
+    Canvas(int width,int height);
     ~Canvas();
-
-    //set the character at the position x and y to value
-    void set_pixel(int x, int y, char value);
-    
-    // tuples of x, y, value
-    void set_pixels(int count, ...);
-
-    void clear();
-    void print() const;
+    void DrawCircle(int x, int y, int ray, char ch);
+    void FillCircle(int x, int y, int ray, char ch);
+    void DrawRect(int left, int top, int right, int bottom, char ch);
+    void FillRect(int left, int top, int right, int bottom, char ch);
+    void SetPoint(int x, int y, char ch);
+    void SetPoints(int count, ...);
+    void DrawLine(int x1, int y1, int x2, int y2, char ch);
+    void Print() const;
+    void Clear(); // clears the canvas
 };
+#endif /* canvas_hpp */
